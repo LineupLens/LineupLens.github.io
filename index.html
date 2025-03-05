@@ -1,1 +1,97 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LineupLens - Find Your Festival Favorites</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="landing-page" class="container">
+        <h1>LineupLens</h1>
+        
+        <div class="app-description">
+            <p>This app takes your music festival lineup and ranks the artists based on how many liked songs you have by that artist on Spotify. 
+            
+            Use this to easily see which artists to prioritize or find out that you have a song liked by an artist you may not recognize.</p>
+        </div>
+        
+        <div class="spotify-login-container">
+            <a href="#" id="spotify-login" class="button">Connect with Spotify</a>
+            <div class="spotify-branding">
+                <p>Powered by</p>
+                <img src="spotify-logo.png" alt="Spotify" class="spotify-logo">
+            </div>
+        </div>
+        
+        <footer>
+            <p>Created by Alex Kim</p>
+            <p class="spotify-disclaimer">Not affiliated with Spotify. This app uses the Spotify API in compliance with <a href="https://developer.spotify.com/terms" target="_blank">Spotify's Developer Terms</a>.</p>
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a> | 
+                <a href="terms-service.html">Terms of Service</a>
+            </div>
+        </footer>
+    </div>
+
+    <div id="festivals-page" class="container hidden">
+        <h1>LineupLens</h1>
+        <p class="welcome-text">Welcome, <span id="user-name">music fan</span>!</p>
+        <h2>Select a Festival</h2>
+        
+        <div class="festival-selector">
+            <select id="festival-dropdown">
+                <option value="">Choose a Festival</option>
+                <option value="edclv">EDC Las Vegas 2025</option>
+                <option value="northcoast">North Coast 2025 (Phase 1)</option>
+                <option value="coachella">Coachella 2025</option>
+                <!-- Add more festivals as needed -->
+            </select>
+            <button id="generate-results" class="button">Find My Matches</button>
+        </div>
+        
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Analyzing your Spotify data...</p>
+            <p id="loading-status"></p>
+        </div>
+        
+        <footer>
+            <p>Created by Alex Kim</p>
+        </footer>
+    </div>
+
+    <div id="results-page" class="container hidden">
+        <h1>LineupLens</h1>
+        <div id="festival-header">
+            <h2 id="festival-title">Your Festival Results</h2>
+        </div>
+
+        <div id="results-summary">
+            <h3 id="results-title">Your Top Festival Artists</h3>
+            <p id="results-description">Based on your Spotify likes</p>
+        </div>
+
+        <ol id="artist-list"></ol>
+        
+        <!-- Moved lineup image below artist list -->
+        <div id="lineup-container" class="hidden">
+            <h3>Festival Lineup</h3>
+            <div class="lineup-image-container">
+                <img id="lineup-image" src="" alt="Festival Lineup">
+            </div>
+            <p class="lineup-note">Click the image to enlarge</p>
+        </div>
+
+        <div class="actions">
+            <button id="back-to-festivals" class="button secondary">Select Different Festival</button>
+        </div>
+        
+        <footer>
+            <p>Created by Alex Kim</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

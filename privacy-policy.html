@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LineupLens - Privacy Policy</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container legal-document">
+        <h1>LineupLens Privacy Policy</h1>
+        <div class="legal-content">
+            <p class="last-updated">Last Updated: March 4, 2025</p>
+            
+            <section>
+                <h2>1. Introduction</h2>
+                <p>Welcome to LineupLens ("we," "our," or "us"). We respect your privacy and are committed to protecting your personal data. This privacy policy explains how we collect, use, and protect your data when you use our service.</p>
+            </section>
+            
+            <section>
+                <h2>2. Data We Collect</h2>
+                <p>LineupLens uses the Spotify API to access certain data from your Spotify account, with your permission. We collect the following information:</p>
+                <ul>
+                    <li>Your Spotify display name</li>
+                    <li>Your liked songs on Spotify</li>
+                    <li>Your email address (if you've granted that permission)</li>
+                </ul>
+                <p>We use this data solely to provide the festival artist matching service. We do not store your liked songs or other Spotify data on our servers.</p>
+            </section>
+            
+            <section>
+                <h2>3. How We Use Your Data</h2>
+                <p>We use your data for the following purposes:</p>
+                <ul>
+                    <li>To match your liked songs with festival lineups</li>
+                    <li>To display personalized artist recommendations</li>
+                    <li>To improve our service</li>
+                </ul>
+                <p>Your data is processed in your browser and is not stored on our servers. Your Spotify access token is temporarily stored in your browser's session and is deleted when you close your browser or log out.</p>
+            </section>
+            
+            <section>
+                <h2>4. Data Sharing and Third Parties</h2>
+                <p>We do not share your data with any third parties except as necessary to provide our service. We use:</p>
+                <ul>
+                    <li>Spotify's API (subject to <a href="https://www.spotify.com/us/legal/privacy-policy/" target="_blank">Spotify's Privacy Policy</a>)</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2>5. Your Rights</h2>
+                <p>Depending on your location, you may have the following rights regarding your data:</p>
+                <ul>
+                    <li>Right to access your personal data</li>
+                    <li>Right to correct inaccurate data</li>
+                    <li>Right to request deletion of your data</li>
+                    <li>Right to restrict or object to our processing of your data</li>
+                    <li>Right to data portability</li>
+                </ul>
+                <p>To exercise these rights, please contact us at the email address below.</p>
+            </section>
+            
+            <section>
+                <h2>6. Security</h2>
+                <p>We implement appropriate security measures to protect your personal data. However, no method of transmission over the Internet is 100% secure. We strive to use commercially acceptable means to protect your personal data but cannot guarantee its absolute security.</p>
+            </section>
+            
+            <section>
+                <h2>7. Changes to This Policy</h2>
+                <p>We may update this privacy policy from time to time. We will notify you of any changes by posting the new privacy policy on this page and updating the "Last Updated" date.</p>
+            </section>
+            
+            <section>
+                <h2>8. Contact Us</h2>
+                <p>If you have any questions about this privacy policy or our data practices, please contact us at:</p>
+                <p>Email: ajkim2001@gmail.com</p>
+            </section>
+        </div>
+        
+        <div class="legal-nav">
+            <a href="index.html" class="button secondary">Back to Home</a>
+        </div>
+        
+        <footer>
+            <p>Created by Alex Kim</p>
+            <p class="spotify-disclaimer">Not affiliated with Spotify. This app uses the Spotify API in compliance with <a href="https://developer.spotify.com/terms" target="_blank">Spotify's Developer Terms</a>.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Simple script to highlight the current page in navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('nav a');
+            
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href').split('/').pop();
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

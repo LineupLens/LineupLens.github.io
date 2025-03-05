@@ -1,0 +1,71 @@
+# LineupLens Setup Guide
+
+This document provides step-by-step instructions to set up LineupLens with Spotify API integration.
+
+## 1. Spotify Developer Dashboard Setup
+
+Before you can use LineupLens, you need to register it with Spotify:
+
+1. Go to the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)
+2. Log in with your Spotify account
+3. Click "Create An App"
+4. Fill in the application details:
+   - **Name:** LineupLens
+   - **Description:** A web app that matches festival lineups with your Spotify liked songs
+   - **Website:** Your website URL (can be localhost for development)
+   - **Redirect URI:** The URL where users will be sent after authenticating
+     - For local development: `http://localhost:8000/` (or your preferred local URL)
+     - For production: Your deployed website URL
+5. Accept the terms and click "Create"
+6. On your app's dashboard, copy the **Client ID**
+7. Open `script.js` and replace the `CLIENT_ID` value with your Client ID
+8. In the same file, update the `REDIRECT_URI` to match your redirect URI
+
+## 2. Required Files Setup
+
+Ensure you have the following files in your project:
+
+### Spotify Branding Files
+1. Download the Spotify logo from the [Spotify Brand Resources](https://developer.spotify.com/documentation/general/design-and-branding/)
+2. Save the following files in your project root:
+   - `spotify-logo.png` - The Spotify wordmark logo
+   - `spotify-icon.png` - The Spotify icon for artist links
+
+### Festival Data
+Prepare CSV files for each festival with the format:
+
+```
+Original Name,Matched Name,Spotify ID
+Artist Name,Spotify Artist Name,spotifyid123456
+```
+
+Name your CSV files according to the entries in the `festivalInfo` object in `script.js`.
+
+### Festival Images
+Add lineup images for each festival matching the filenames specified in `festivalInfo`.
+
+## 3. Running the Application
+
+For local development:
+1. Start a local web server in the project directory
+   ```
+   python -m http.server 8000
+   ```
+   or use any other web server of your choice
+2. Open your browser and navigate to `http://localhost:8000`
+
+## 4. Compliance Requirements
+
+Ensure your implementation complies with Spotify's terms:
+
+1. Keep all Spotify branding elements following their guidelines
+2. Maintain the proper disclaimers in the footer
+3. Don't modify the links to Spotify's terms
+4. Link artist names to their Spotify pages
+5. Don't store any user data longer than necessary
+
+## Additional Resources
+
+- [Spotify Web API Documentation](https://developer.spotify.com/documentation/web-api/)
+- [Spotify Developer Terms](https://developer.spotify.com/terms/)
+- [Spotify Branding Guidelines](https://developer.spotify.com/documentation/general/design-and-branding/)

@@ -1,0 +1,48 @@
+# Spotify Branding Guidelines for LineupLens
+
+This document contains important guidelines for using Spotify branding elements in LineupLens to ensure compliance with Spotify's Developer Terms and Brand Guidelines.
+
+## Logo Files
+
+For the app to function properly, you need to download and add the following images to your project:
+
+1. **spotify-logo.png** - The official Spotify logo, to be displayed in the "Powered by Spotify" section
+2. **spotify-icon.png** - The Spotify icon used next to artist names in the results
+
+## Logo Usage Guidelines
+
+When using Spotify's logo and branding assets, please adhere to these guidelines:
+
+### DO:
+- Use the official Spotify logo downloaded from the [Spotify Developer Site](https://developer.spotify.com/documentation/general/design-and-branding/)
+- Maintain clear space around the logo (at least the height of the "o" in the logo)
+- Use the black logo on light backgrounds or the white logo on dark backgrounds
+- Use the logo at a readable size (minimum 24px height)
+
+### DON'T:
+- Modify or distort the Spotify logo
+- Create new lockups or combinations with the Spotify logo
+- Use the Spotify logo as part of a sentence
+- Use outdated versions of the Spotify logo
+- Create app icons that could be confused with Spotify's own apps
+
+## "Powered by Spotify" Requirements
+
+The app includes a "Powered by Spotify" attribution that:
+- Appears on the landing page below the Connect button
+- Uses the official Spotify logo
+- Follows Spotify's size and spacing requirements
+
+## Spotify API Usage in Your App
+
+When using the Spotify API in your app:
+1. Include a clear disclaimer that your app is not affiliated with Spotify
+2. Link to Spotify's Developer Terms
+3. Don't imply any official relationship with Spotify
+4. Send users to Spotify for full playback of music (via the links to artist pages)
+
+## Additional Resources
+
+- [Spotify Developer Terms](https://developer.spotify.com/terms/)
+- [Spotify Design Guidelines](https://developer.spotify.com/documentation/general/design-and-branding/)
+- [Spotify API Guidelines](https://developer.spotify.com/documentation/general/guides/)
