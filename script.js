@@ -73,6 +73,12 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
 });
 
+window.onerror = function(message, source, lineno, colno, error) {
+    console.error("Error caught:", message, "at", source, ":", lineno);
+    alert("Error: " + message + "\nPlease check the console for details.");
+    return true;
+};
+
 function setupEventListeners() {
     // Landing page
     const loginButton = document.getElementById('spotify-login');
@@ -120,9 +126,25 @@ function setupEventListeners() {
 
 // Initialize app
 function initializeApp() {
+    console.log("App initializing...");
+    
     // Parse URL parameters for access token
     const params = getUrlParameters();
-    accessToken = params.accessToken;
+    const urlToken = params.accessToken;
+    
+    if (urlToken) {
+        console.log("Token found in URL");
+        accessToken = urlToken;
+        saveTokenToStorage(accessToken);
+        
+        // After saving token, remove hash from URL to prevent issues on refresh
+        if (window.history && window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+    } else {
+        console.log("No token in URL, checking storage");
+        accessToken = getTokenFromStorage();
+    }
     
     if (accessToken) {
         // We have a token, fetch user data and show festivals page
@@ -152,8 +174,52 @@ function initializeApp() {
 
 // Initiate Spotify login
 function initiateSpotifyLogin() {
-    const loginUrl = `https://accounts.spotify.com/authorize?response_type=token&client_id=${CLIENT_ID}&scope=${SPOTIFY_SCOPES}&redirect_uri=${REDIRECT_URI}`;
-    window.location.href = loginUrl;
+    // For Safari, we'll use a popup window to avoid ITP issues
+    if (isSafari()) {
+        console.log("Safari detected, using popup for auth");
+        const width = 500;
+        const height = 700;
+        const left = (screen.width - width) / 2;
+        const top = (screen.height - height) / 2;
+        
+        const popup = window.open(
+            `https://accounts.spotify.com/authorize?response_type=token&client_id=${CLIENT_ID}&scope=${SPOTIFY_SCOPES}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`,
+            'spotify-login-popup',
+            `width=${width},height=${height},top=${top},left=${left}`
+        );
+        
+        // Check for popup blocker
+        if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+            alert("Popup blocked! Please enable popups for this site to log in with Spotify.");
+        }
+        
+        // We need to poll for the token
+        const popupCheckInterval = setInterval(() => {
+            try {
+                if (popup.location.href.includes(REDIRECT_URI)) {
+                    clearInterval(popupCheckInterval);
+                    const hash = popup.location.hash.substring(1);
+                    const params = new URLSearchParams(hash);
+                    accessToken = params.get('access_token');
+                    
+                    if (accessToken) {
+                        saveTokenToStorage(accessToken);
+                        popup.close();
+                        initializeApp(); // Re-initialize with the new token
+                    } else {
+                        alert("Failed to get access token from Spotify");
+                    }
+                }
+            } catch (e) {
+                // Cross-origin error expected until redirect happens
+            }
+        }, 500);
+    } else {
+        // Regular flow for other browsers
+        const loginUrl = `https://accounts.spotify.com/authorize?response_type=token&client_id=${CLIENT_ID}&scope=${SPOTIFY_SCOPES}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
+        console.log("Redirecting to Spotify login with URL:", loginUrl);
+        window.location.href = loginUrl;
+    }
 }
 
 // Process selected festival
@@ -471,11 +537,19 @@ async function fetchSongs(accessToken, url = 'https://api.spotify.com/v1/me/trac
 
 // Parse URL parameters (for access token)
 function getUrlParameters() {
+    console.log("Parsing URL parameters from:", window.location.hash);
     const hash = window.location.hash.substring(1);
     const params = new URLSearchParams(hash);
+    
+    const accessToken = params.get('access_token');
+    const state = params.get('state');
+    
+    console.log("Extracted access_token:", accessToken ? "Yes (token exists)" : "No");
+    console.log("Extracted state:", state);
+    
     return {
-        accessToken: params.get('access_token'),
-        state: params.get('state')
+        accessToken: accessToken,
+        state: state
     };
 }
 
@@ -495,4 +569,28 @@ function navigateTo(page) {
     }
     
     currentPage = page;
+}
+
+function saveTokenToStorage(token) {
+    try {
+        sessionStorage.setItem('spotifyToken', token);
+        console.log("Token saved to session storage");
+        return true;
+    } catch (e) {
+        console.error("Failed to save token:", e);
+        return false;
+    }
+}
+
+function getTokenFromStorage() {
+    try {
+        return sessionStorage.getItem('spotifyToken');
+    } catch (e) {
+        console.error("Failed to get token from storage:", e);
+        return null;
+    }
+}
+
+function isSafari() {
+    return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 }

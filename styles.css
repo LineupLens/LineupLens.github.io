@@ -453,65 +453,66 @@ footer a:hover {
   margin: 30px 0;
 }
 
-/* Enhanced Mobile Styling for Artist List */
-
-/* Add these styles to your existing styles.css file */
+/* Improved Artist List Alignment for Mobile */
 
 @media (max-width: 767px) {
-  /* Increase left padding to prevent number overlap */
+  /* Reset the ordered list styling and use custom numbering */
   #artist-list {
-    padding-left: 35px;
+    list-style-type: none;
+    padding-left: 0;
+    counter-reset: artist-counter;
   }
   
-  /* Adjust the artist item layout */
+  /* Style for each list item */
+  #artist-list li {
+    position: relative;
+    margin-bottom: 15px;
+    counter-increment: artist-counter;
+  }
+  
+  /* Create custom numbering that aligns properly */
+  #artist-list li::before {
+    content: counter(artist-counter) ".";
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-weight: bold;
+  }
+  
+  /* Adjust artist item container to make room for numbers */
   .artist-item {
+    margin-left: 30px;
+    padding: 15px 15px 15px 20px;
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 12px;
   }
   
-  /* Give full width to artist name and add margin below */
+  /* Artist name styling */
   .artist-name {
     width: 100%;
     margin-bottom: 8px;
-    word-break: break-word; /* Handle long artist names */
-  }
-  
-  /* Prevent long artist names from overflowing */
-  .artist-name a {
     word-break: break-word;
-    display: inline;
-    padding-right: 20px; /* Give space for the Spotify icon */
+    padding-right: 10px;
   }
   
-  /* Position count badge better for mobile */
+  /* Count badge styling */
   .artist-count {
     align-self: flex-start;
     margin-top: 5px;
   }
   
-  /* Reduce font size slightly */
-  #artist-list li {
-    font-size: 1rem;
-  }
-  
   /* For very small screens */
   @media (max-width: 360px) {
-    #artist-list {
-      padding-left: 30px;
+    #artist-list li::before {
+      left: 5px;
     }
     
     .artist-item {
-      padding: 10px;
-    }
-    
-    .artist-name, .artist-count {
-      font-size: 0.9rem;
-    }
-    
-    /* Ensure the Spotify icon doesn't interfere with text */
-    .artist-name img {
-      width: 16px;
+      margin-left: 25px;
+      padding: 12px 12px 12px 15px;
     }
   }
 }
