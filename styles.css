@@ -452,3 +452,66 @@ footer a:hover {
   justify-content: center;
   margin: 30px 0;
 }
+
+/* Enhanced Mobile Styling for Artist List */
+
+/* Add these styles to your existing styles.css file */
+
+@media (max-width: 767px) {
+  /* Increase left padding to prevent number overlap */
+  #artist-list {
+    padding-left: 35px;
+  }
+  
+  /* Adjust the artist item layout */
+  .artist-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+  }
+  
+  /* Give full width to artist name and add margin below */
+  .artist-name {
+    width: 100%;
+    margin-bottom: 8px;
+    word-break: break-word; /* Handle long artist names */
+  }
+  
+  /* Prevent long artist names from overflowing */
+  .artist-name a {
+    word-break: break-word;
+    display: inline;
+    padding-right: 20px; /* Give space for the Spotify icon */
+  }
+  
+  /* Position count badge better for mobile */
+  .artist-count {
+    align-self: flex-start;
+    margin-top: 5px;
+  }
+  
+  /* Reduce font size slightly */
+  #artist-list li {
+    font-size: 1rem;
+  }
+  
+  /* For very small screens */
+  @media (max-width: 360px) {
+    #artist-list {
+      padding-left: 30px;
+    }
+    
+    .artist-item {
+      padding: 10px;
+    }
+    
+    .artist-name, .artist-count {
+      font-size: 0.9rem;
+    }
+    
+    /* Ensure the Spotify icon doesn't interfere with text */
+    .artist-name img {
+      width: 16px;
+    }
+  }
+}
