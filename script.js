@@ -1,8 +1,9 @@
 // Configuration
 const CLIENT_ID = '3aad6a64945f40f988872463af9012ee'; // Replace with your Spotify App Client ID
+// In script.js, update the REDIRECT_URI calculation
 const REDIRECT_URI = window.location.href.includes('localhost') 
   ? 'http://localhost:8000/' 
-  : 'https://lineuplens.github.io/';
+  : window.location.href.split('?')[0].split('#')[0]; // Captures current base URL without params
 const SPOTIFY_SCOPES = 'user-library-read user-read-email';
 
 /*
