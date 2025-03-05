@@ -4,7 +4,7 @@ const CLIENT_ID = '3aad6a64945f40f988872463af9012ee'; // Replace with your Spoti
 const REDIRECT_URI = window.location.href.includes('localhost') 
   ? 'http://localhost:8000/' 
   : window.location.href.split('?')[0].split('#')[0]; // Captures current base URL without params
-const SPOTIFY_SCOPES = 'user-library-read user-read-email';
+const SPOTIFY_SCOPES = 'user-library-read user-read-email user-read-private';
 
 /*
  * IMPORTANT: Spotify API Registration Instructions
@@ -132,8 +132,8 @@ function initializeApp() {
     const params = getUrlParameters();
     const urlToken = params.accessToken;
     
-    if (urlToken) {
-        console.log("Token found in URL");
+    if (urlToken && verifyToken(urlToken)) {
+        console.log("Valid token found in URL");
         accessToken = urlToken;
         saveTokenToStorage(accessToken);
         
@@ -142,8 +142,16 @@ function initializeApp() {
             window.history.replaceState(null, null, window.location.pathname);
         }
     } else {
-        console.log("No token in URL, checking storage");
-        accessToken = getTokenFromStorage();
+        console.log("No valid token in URL, checking storage");
+        const storedToken = getTokenFromStorage();
+        
+        if (verifyToken(storedToken)) {
+            accessToken = storedToken;
+        } else {
+            console.log("No valid token found");
+            navigateTo('landing');
+            return;
+        }
     }
     
     if (accessToken) {
@@ -163,7 +171,8 @@ function initializeApp() {
             })
             .catch(error => {
                 console.error('Error fetching user data:', error);
-                // Token might be invalid, stay on landing page
+                // Add these two lines:
+                clearStoredTokens();
                 navigateTo('landing');
             });
     } else {
@@ -446,15 +455,17 @@ function displayResults(matchedArtists) {
 
 // Fetch user data from Spotify
 function fetchUserData(accessToken) {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+    console.log("Fetching user data with token", accessToken.substring(0, 5) + "...");
     
     return fetch('https://api.spotify.com/v1/me', {
-        headers: {'Authorization': 'Bearer ' + accessToken},
-        signal: controller.signal
+        headers: {'Authorization': 'Bearer ' + accessToken}
     })
     .then(response => {
-        clearTimeout(timeoutId);
+        console.log("User data response status:", response.status);
+        
+        if (response.status === 403) {
+            throw new Error("Spotify API access forbidden. Please reconnect with Spotify and ensure you accept all permission requests.");
+        }
         
         if (response.status === 429) {
             // Handle rate limiting
@@ -468,16 +479,18 @@ function fetchUserData(accessToken) {
         }
         
         if (!response.ok) {
+            console.error("API Error Details:", response);
             throw new Error(`Failed to fetch user data: ${response.status} ${response.statusText}`);
         }
         
         return response.json();
     })
     .catch(error => {
-        clearTimeout(timeoutId);
-        if (error.name === 'AbortError') {
-            throw new Error('Spotify API request timed out. Please try again.');
-        }
+        console.error("Error in fetchUserData:", error);
+        // Display user-friendly error
+        alert("We encountered an error connecting to Spotify. Please try again.");
+        // Navigate back to landing page
+        navigateTo('landing');
         throw error;
     });
 }
@@ -593,4 +606,22 @@ function getTokenFromStorage() {
 
 function isSafari() {
     return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+}
+
+function verifyToken(token) {
+    if (!token) return false;
+    
+    // Very basic validation - tokens are usually quite long
+    if (token.length < 20) return false;
+    
+    return true;
+}
+
+function clearStoredTokens() {
+    try {
+        sessionStorage.removeItem('spotifyToken');
+        localStorage.removeItem('spotifyToken'); // In case you used localStorage too
+    } catch (e) {
+        console.error("Error clearing tokens:", e);
+    }
 }
