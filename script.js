@@ -38,13 +38,13 @@ const festivalInfo = {
     beyondchi: {
         csv: 'beyondchi_spotify_matches.csv',
         name: 'Beyond Wonderland Chicago 2025',
-        image: 'beyondchi_2025_lineup.png'
+        image: 'beyondchi_2025_lineup.jpg'
     },
     // Added Beyond Wonderland SoCal 2025 as a new festival option
     beyondsocal: {
         csv: 'beyondsocal_spotify_matches.csv',
         name: 'Beyond Wonderland SoCal 2025',
-        image: 'beyondsocal_2025_lineup.png'
+        image: 'beyondsocal_2025_lineup.jpg'
     },
     // Added Coachella 2025 as a new festival option
     coachella: {
@@ -61,7 +61,7 @@ const festivalInfo = {
     eforest: {
         csv: 'eforest_spotify_matches.csv',
         name: 'Electric Forest 2025',
-        image: 'eforest_2025_lineup.png'
+        image: 'eforest_2025_lineup.jpg'
     },
     // Added hard summer 2025 as a new festival option
     hard: {
@@ -79,7 +79,7 @@ const festivalInfo = {
     sziget: {
         csv: 'sziget_spotify_matches.csv',
         name: 'Sziget 2025',
-        image: 'sziget_2025_lineup.png'
+        image: 'sziget_2025_lineup.webp'
     },
     // Added ultra miami 2025 as a new festival option
     ultra: {
