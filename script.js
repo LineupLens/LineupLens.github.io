@@ -34,10 +34,40 @@ const festivalArtists = {};
 
 // Mapping of festival to CSV filename and display name
 const festivalInfo = {
+    // Added Beyond Wonderland Chicago 2025 as a new festival option
+    beyondchi: {
+        csv: 'beyondchi_spotify_matches.csv',
+        name: 'Beyond Wonderland Chicago 2025',
+        image: 'beyondchi_2025_lineup.png'
+    },
+    // Added Beyond Wonderland SoCal 2025 as a new festival option
+    beyondsocal: {
+        csv: 'beyondsocal_spotify_matches.csv',
+        name: 'Beyond Wonderland SoCal 2025',
+        image: 'beyondsocal_2025_lineup.png'
+    },
+    // Added Coachella 2025 as a new festival option
+    coachella: {
+        csv: 'coachella_spotify_matches.csv',
+        name: 'Coachella 2025',
+        image: 'coachella_2025_lineup.jpg'
+    },
     edclv: {
         csv: 'edc_spotify_matches.csv',
         name: 'EDC Las Vegas 2025',
         image: 'edclv_2025_lineup.png'
+    },
+    // Added eforest 2025 as a new festival option
+    eforest: {
+        csv: 'eforest_spotify_matches.csv',
+        name: 'Electric Forest 2025',
+        image: 'eforest_2025_lineup.png'
+    },
+    // Added hard summer 2025 as a new festival option
+    hard: {
+        csv: 'hard_spotify_matches.csv',
+        name: 'Hard Summer 2025',
+        image: 'hard_2025_lineup.png'
     },
     // Updated North Coast festival name to include "Phase 1"
     northcoast: {
@@ -45,11 +75,17 @@ const festivalInfo = {
         name: 'North Coast 2025 (Phase 1)',
         image: 'northcoast_2025_lineup.png'
     },
-    // Added Coachella 2025 as a new festival option
-    coachella: {
-        csv: 'coachella_spotify_matches.csv',
-        name: 'Coachella 2025',
-        image: 'coachella_2025_lineup.jpg'
+    // Added sziget 2025 as a new festival option
+    sziget: {
+        csv: 'sziget_spotify_matches.csv',
+        name: 'Sziget 2025',
+        image: 'sziget_2025_lineup.png'
+    },
+    // Added ultra miami 2025 as a new festival option
+    ultra: {
+        csv: 'ultra_spotify_matches.csv',
+        name: 'Ultra Miami 2025',
+        image: 'ultra_2025_lineup.png'
     }
 };
 
