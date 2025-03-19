@@ -69,6 +69,12 @@ const festivalInfo = {
         name: 'Hard Summer 2025',
         image: 'hard_2025_lineup.png'
     },
+    // Added lolla 2025 as a new festival option
+    lolla: {
+        csv: 'lolla_spotify_matches.csv',
+        name: 'Lollapalooza 2025',
+        image: 'lolla_2025_lineup.png'
+    },
     // Updated North Coast festival name to include "Phase 1"
     northcoast: {
         csv: 'ncmf_spotify_matches.csv',
