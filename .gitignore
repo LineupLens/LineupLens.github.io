@@ -59,9 +59,10 @@ privacy-policy.html
 terms-service.html
 *.csv
 *.txt
-*.jpg
-*.png
-*.webp
+# Only ignore image files in root directory, not in assets/ or data/
+/*.jpg
+/*.png
+/*.webp
 *.zip
 *.numbers
 *.svg

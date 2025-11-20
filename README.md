@@ -39,7 +39,7 @@ LineupLens is a personal tool for friends and family to discover which festival 
    - Add redirect URI: `http://localhost:8000/`
 
 3. **Update Configuration**
-   - Open `config.js`
+   - Open `assets/js/config.js`
    - Update the development Client ID
    - For production, update the production Client ID
 
@@ -62,12 +62,22 @@ See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) for detailed deployment instructi
 ```
 LineupLens/
 ├── index.html         # Main HTML file
-├── config.js          # Configuration (update with your Client ID)
 ├── assets/
 │   ├── css/
 │   │   └── main.css   # Main stylesheet
 │   ├── js/            # JavaScript modules
+│   │   ├── config.js  # Configuration (update with your Client ID)
+│   │   ├── app.js     # Main application controller
+│   │   ├── auth.js    # Authentication module
+│   │   ├── api.js     # Spotify API client
+│   │   ├── storage.js # Storage management
+│   │   ├── csv-parser.js # CSV parsing
+│   │   ├── matcher.js # Artist matching algorithm
+│   │   ├── state.js   # State management
+│   │   └── ui.js      # UI rendering
 │   └── images/        # Images and assets
+│       ├── spotify-logo.png
+│       └── spotify-icon.png
 ├── data/
 │   ├── festivals/     # Festival CSV data files
 │   └── images/        # Festival lineup images
