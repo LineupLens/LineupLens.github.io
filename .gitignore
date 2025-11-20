@@ -1,0 +1,70 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+
+# OS files
+Thumbs.db
+.DS_Store
+*.log
+
+# Build artifacts (if we add build tools later)
+dist/
+build/
+*.map
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Documentation (keep locally, don't push to GitHub)
+docs/
+
+# Development artifacts (keep locally, don't push to GitHub)
+REBUILD_ROADMAP.md
+REBUILD_CHECKLIST.md
+CURRENT_ISSUES_ANALYSIS.md
+PHASE1_COMPLETE.md
+PHASE2_COMPLETE.md
+PHASE3_COMPLETE.md
+PHASE5_SUMMARY.md
+DEPLOY_TO_GITHUB.md
+CLEANUP_AND_DEPLOY.md
+DEPLOYMENT_STEPS.md
+DEPLOY_INSTRUCTIONS.md
+deploy.sh
+TESTING_CHECKLIST.md
+
+# Old project files (keep locally for reference)
+LineupLens.github.io/
+spotify matcher/
+LiveRequest/
+script.js
+styles.css
+privacy-policy.html
+terms-service.html
+*.csv
+*.txt
+*.jpg
+*.png
+*.webp
+*.zip
+*.numbers
+*.svg
+app-setup.txt
+spotify-branding.txt
+

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LineupLens - Match your Spotify liked songs with music festival lineups">
+    <title>LineupLens - Find Your Festival Favorites</title>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    
+    <!-- Configuration -->
+    <script src="config.js"></script>
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landing-page" class="container">
+        <h1>LineupLens</h1>
+        
+        <div class="app-description">
+            <p>This app takes your music festival lineup and ranks the artists based on how many liked songs you have by that artist on Spotify.</p>
+            <p>Use this to easily see which artists to prioritize or find out that you have a song liked by an artist you may not recognize.</p>
+        </div>
+        
+        <div class="spotify-login-container">
+            <a href="#" id="spotify-login" class="button">Connect with Spotify</a>
+            <div class="spotify-branding">
+                <p>Powered by</p>
+                <img src="assets/images/spotify-logo.png" alt="Spotify" class="spotify-logo">
+            </div>
+        </div>
+        
+        <footer>
+            <p>Created by Alex Kim</p>
+            <p class="spotify-disclaimer">Not affiliated with Spotify. This app uses the Spotify API in compliance with <a href="https://developer.spotify.com/terms" target="_blank" rel="noopener noreferrer">Spotify's Developer Terms</a>.</p>
+            <div class="footer-links">
+                <a href="legal/privacy-policy.html">Privacy Policy</a> | 
+                <a href="legal/terms-service.html">Terms of Service</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Festivals Page -->
+    <div id="festivals-page" class="container hidden">
+        <h1>LineupLens</h1>
+        <p class="welcome-text">Welcome, <span id="user-name">music fan</span>!</p>
+        <h2>Select a Festival</h2>
+        
+        <div class="festival-selector">
+            <select id="festival-dropdown">
+                <option value="">Choose a Festival</option>
+                <!-- Options will be populated dynamically from festivalConfig -->
+            </select>
+            <button id="generate-results" class="button">Find My Matches</button>
+        </div>
+        
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p id="loading-status">Loading...</p>
+        </div>
+        
+        <div class="actions">
+            <button id="logout-button" class="button secondary">Logout</button>
+        </div>
+        
+        <footer>
+            <p>Created by Alex Kim</p>
+            <p class="spotify-disclaimer">Not affiliated with Spotify. This app uses the Spotify API in compliance with <a href="https://developer.spotify.com/terms" target="_blank" rel="noopener noreferrer">Spotify's Developer Terms</a>.</p>
+            <div class="footer-links">
+                <a href="legal/privacy-policy.html">Privacy Policy</a> | 
+                <a href="legal/terms-service.html">Terms of Service</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Results Page -->
+    <div id="results-page" class="container hidden">
+        <h1>LineupLens</h1>
+        <div id="festival-header">
+            <h2 id="festival-title">Your Festival Results</h2>
+        </div>
+
+        <div id="results-summary">
+            <h3 id="results-title">Your Top Festival Artists</h3>
+            <p id="results-description">Based on your Spotify likes</p>
+        </div>
+
+        <ol id="artist-list"></ol>
+        
+        <!-- Lineup image below artist list -->
+        <div id="lineup-container" class="hidden">
+            <h3>Festival Lineup</h3>
+            <div class="lineup-image-container">
+                <img id="lineup-image" src="" alt="Festival Lineup">
+            </div>
+            <p class="lineup-note">Click the image to enlarge</p>
+        </div>
+
+        <div class="actions">
+            <button id="back-to-festivals" class="button secondary">Select Different Festival</button>
+        </div>
+        
+        <footer>
+            <p>Created by Alex Kim</p>
+            <p class="spotify-disclaimer">Not affiliated with Spotify. This app uses the Spotify API in compliance with <a href="https://developer.spotify.com/terms" target="_blank" rel="noopener noreferrer">Spotify's Developer Terms</a>.</p>
+            <div class="footer-links">
+                <a href="legal/privacy-policy.html">Privacy Policy</a> | 
+                <a href="legal/terms-service.html">Terms of Service</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Error Display -->
+    <div id="error-display" class="error-message hidden">
+        <div class="error-icon">⚠️</div>
+        <div class="error-content">
+            <h3 id="error-title">Error</h3>
+            <p id="error-message">An error occurred</p>
+            <button id="error-retry" class="button hidden">Try Again</button>
+            <button id="error-dismiss" class="button secondary">Dismiss</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- PapaParse for CSV parsing (loaded before app.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
+
